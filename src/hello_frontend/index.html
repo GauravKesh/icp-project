@@ -1,17 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>IC Hello Starter</title>
-  <base href="/" />
-  <link rel="icon" href="/favicon.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        .delete {
+            background-color: #dc3545;
+        }
+
+        .delete:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
-
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
+    <div class="container">
+        <h1>Todo App</h1>
+        <input type="text" id="todoInput" placeholder="Add a new todo..." />
+        <button id="addTodoBtn">Add Todo</button>
+        <ul id="todoList"></ul>
+    </div>
 
+    <script>
+        const addTodoBtn = document.getElementById('addTodoBtn');
+        const todoInput = document.getElementById('todoInput');
+        const todoList = document.getElementById('todoList');
+
+        // Function to add a new todo
+        addTodoBtn.addEventListener('click', function() {
+            const todoText = todoInput.value.trim();
+            if (todoText) {
+                const todoItem = document.createElement('li');
+
+                // Create a span for the todo text
+                const todoSpan = document.createElement('span');
+                todoSpan.textContent = todoText;
+
+                // Mark as complete
+                todoSpan.addEventListener('click', function() {
+                    todoSpan.classList.toggle('completed');
+                });
+
+                // Create a delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.classList.add('delete');
+                deleteBtn.addEventListener('click', function() {
+                    todoList.removeChild(todoItem);
+                });
+
+                // Append the elements to the todo item and then to the list
+                todoItem.appendChild(todoSpan);
+                todoItem.appendChild(deleteBtn);
+                todoList.appendChild(todoItem);
+
+                // Clear the input
+                todoInput.value = '';
+            }
+        });
+    </script>
+</body>
 </html>
