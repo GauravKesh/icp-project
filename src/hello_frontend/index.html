@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
+    <title>Online Shoe Store</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,109 +14,93 @@
 
         h1 {
             text-align: center;
+            color: #333;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product {
             background: white;
-            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
         }
 
-        input[type="text"] {
-            width: 70%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .product img {
+            max-width: 100%;
+            border-radius: 8px;
         }
 
-        button {
-            padding: 10px;
-            background-color: #28a745;
+        .product h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .product p {
+            color: #555;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .add-to-cart {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
         }
 
-        button:hover {
-            background-color: #218838;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .completed {
-            text-decoration: line-through;
-            color: #aaa;
-        }
-
-        .delete {
-            background-color: #dc3545;
-        }
-
-        .delete:hover {
-            background-color: #c82333;
+        .add-to-cart:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
+    <h1>Online Shoe Store</h1>
     <div class="container">
-        <h1>Todo App</h1>
-        <input type="text" id="todoInput" placeholder="Add a new todo..." />
-        <button id="addTodoBtn">Add Todo</button>
-        <ul id="todoList"></ul>
+        <div class="product">
+            <img src="https://via.placeholder.com/250x150" alt="Shoe 1">
+            <h2>Shoe Model 1</h2>
+            <p class="price">$49.99</p>
+            <p>Comfortable running shoes for daily wear.</p>
+            <a href="#" class="add-to-cart">Add to Cart</a>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/250x150" alt="Shoe 2">
+            <h2>Shoe Model 2</h2>
+            <p class="price">$59.99</p>
+            <p>Stylish sneakers for casual outings.</p>
+            <a href="#" class="add-to-cart">Add to Cart</a>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/250x150" alt="Shoe 3">
+            <h2>Shoe Model 3</h2>
+            <p class="price">$79.99</p>
+            <p>Durable hiking boots for adventurous trails.</p>
+            <a href="#" class="add-to-cart">Add to Cart</a>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/250x150" alt="Shoe 4">
+            <h2>Shoe Model 4</h2>
+            <p class="price">$69.99</p>
+            <p>Elegant shoes for formal occasions.</p>
+            <a href="#" class="add-to-cart">Add to Cart</a>
+        </div>
     </div>
-
-    <script>
-        const addTodoBtn = document.getElementById('addTodoBtn');
-        const todoInput = document.getElementById('todoInput');
-        const todoList = document.getElementById('todoList');
-
-        // Function to add a new todo
-        addTodoBtn.addEventListener('click', function() {
-            const todoText = todoInput.value.trim();
-            if (todoText) {
-                const todoItem = document.createElement('li');
-
-                // Create a span for the todo text
-                const todoSpan = document.createElement('span');
-                todoSpan.textContent = todoText;
-
-                // Mark as complete
-                todoSpan.addEventListener('click', function() {
-                    todoSpan.classList.toggle('completed');
-                });
-
-                // Create a delete button
-                const deleteBtn = document.createElement('button');
-                deleteBtn.textContent = 'Delete';
-                deleteBtn.classList.add('delete');
-                deleteBtn.addEventListener('click', function() {
-                    todoList.removeChild(todoItem);
-                });
-
-                // Append the elements to the todo item and then to the list
-                todoItem.appendChild(todoSpan);
-                todoItem.appendChild(deleteBtn);
-                todoList.appendChild(todoItem);
-
-                // Clear the input
-                todoInput.value = '';
-            }
-        });
-    </script>
 </body>
 </html>
